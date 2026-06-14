@@ -1,0 +1,75 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce3k06jktd8yt"]
+
+[ext_resource type="Script" path="res://Scripts/about_scene.gd" id="1"]
+
+[node name="AboutScene" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "ABOUT"
+
+[node name="Control" type="Control" parent="CenterContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 20)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label2" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "This bioreactor simulation uses the 
+key research in industrial scale penicellin 
+production, this has been an effort to produce
+a physically accurate digital twin of the real world
+industril plant, iside of godot4 game engine
+we are using modelling techniques in blender, 
+to create these asssets, and then the godot is building the 
+flow of interactions through its advanced process nodes
+
+Controls:
+W,A,S,D for movement 
+Space to Jump
+E for chatbot
+ESC for pause menu
+
+You can enter customreciepies in the pause menu and can see the 
+process unfold in simulation, 
+you also have a travel agent built into chatbot
+
+enjoy your time here :)"
+
+[node name="Control2" type="Control" parent="CenterContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "   Main Menu   "

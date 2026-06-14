@@ -1,0 +1,72 @@
+[gd_resource type="VisualShader" load_steps=6 format=3 uid="uid://c54ecgun4ra7w"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_f585t"]
+parameter_name = "ColorParameter"
+default_value_enabled = true
+default_value = Color(0.1034, 0.291088, 0.392563, 1)
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_k3cnq"]
+parameter_name = "FloatParameter"
+default_value_enabled = true
+default_value = 0.99
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_msw0o"]
+constant = 0.8
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_uouf0"]
+constant = 0.99
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_r08ce"]
+input_name = "normal"
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform vec4 ColorParameter : source_color = vec4(0.103400, 0.291088, 0.392563, 1.000000);
+uniform float FloatParameter = 0.99000000953674;
+
+
+
+void fragment() {
+// ColorParameter:3
+	vec4 n_out3p0 = ColorParameter;
+
+
+// FloatParameter:4
+	float n_out4p0 = FloatParameter;
+
+
+// FloatConstant:5
+	float n_out5p0 = 0.800000;
+
+
+// FloatConstant:6
+	float n_out6p0 = 0.990000;
+
+
+// Input:7
+	vec3 n_out7p0 = NORMAL;
+
+
+// Output:0
+	ALBEDO = vec3(n_out3p0.xyz);
+	ALPHA = n_out4p0;
+	METALLIC = n_out5p0;
+	ROUGHNESS = n_out6p0;
+	NORMAL = n_out7p0;
+
+
+}
+"
+nodes/fragment/3/node = SubResource("VisualShaderNodeColorParameter_f585t")
+nodes/fragment/3/position = Vector2(-80, 40)
+nodes/fragment/4/node = SubResource("VisualShaderNodeFloatParameter_k3cnq")
+nodes/fragment/4/position = Vector2(80, 120)
+nodes/fragment/5/node = SubResource("VisualShaderNodeFloatConstant_msw0o")
+nodes/fragment/5/position = Vector2(180, 200)
+nodes/fragment/6/node = SubResource("VisualShaderNodeFloatConstant_uouf0")
+nodes/fragment/6/position = Vector2(180, 260)
+nodes/fragment/7/node = SubResource("VisualShaderNodeInput_r08ce")
+nodes/fragment/7/position = Vector2(60, 300)
+nodes/fragment/connections = PackedInt32Array(3, 0, 0, 0, 4, 0, 0, 1, 5, 0, 0, 2, 6, 0, 0, 3, 7, 0, 0, 8)

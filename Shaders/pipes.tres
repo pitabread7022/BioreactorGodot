@@ -1,0 +1,165 @@
+[gd_resource type="VisualShader" load_steps=15 format=3 uid="uid://c7jsvv626iry"]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_7pu0p"]
+operator = 5
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_nxdre"]
+function = 1
+
+[sub_resource type="VisualShaderNodeIntParameter" id="VisualShaderNodeIntParameter_owkhf"]
+parameter_name = "fluct"
+default_value_enabled = true
+default_value = 5
+
+[sub_resource type="VisualShaderNodeMultiplyAdd" id="VisualShaderNodeMultiplyAdd_7fi12"]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_7nl4g"]
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_kelma"]
+parameter_name = "roughness"
+default_value_enabled = true
+default_value = 0.1
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_3f4xm"]
+parameter_name = "metallic"
+default_value_enabled = true
+default_value = 0.8
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_e0v2j"]
+parameter_name = "pipeColor"
+default_value_enabled = true
+default_value = Color(0.3582, 0.0664395, 0.130746, 1)
+
+[sub_resource type="VisualShaderNodeBooleanParameter" id="VisualShaderNodeBooleanParameter_in7tk"]
+parameter_name = "containsFlow"
+default_value_enabled = true
+default_value = true
+
+[sub_resource type="VisualShaderNodeMultiplyAdd" id="VisualShaderNodeMultiplyAdd_eukwe"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0, 0, 0)]
+op_type = 2
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_tk0mx"]
+parameter_name = "pipeColor2"
+default_value_enabled = true
+default_value = Color(0.33733, 0.879215, 0.823918, 1)
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_60tgt"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_rgww5"]
+function = 0
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_ktkll"]
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform vec4 pipeColor2 : source_color = vec4(0.337330, 0.879215, 0.823918, 1.000000);
+uniform bool containsFlow = true;
+uniform int fluct = 5;
+uniform vec4 pipeColor : source_color = vec4(0.358200, 0.066440, 0.130746, 1.000000);
+uniform float metallic = 0.80000001192093;
+uniform float roughness = 0.10000000149012;
+
+
+
+void fragment() {
+// ColorParameter:5
+	vec4 n_out5p0 = pipeColor2;
+
+
+// BooleanParameter:3
+	bool n_out3p0 = containsFlow;
+
+
+// Input:7
+	float n_out7p0 = TIME;
+
+
+// FloatFunc:8
+	float n_out8p0 = sin(n_out7p0);
+
+
+// IntParameter:12
+	int n_out12p0 = fluct;
+
+
+// FloatOp:10
+	float n_out10p0 = pow(n_out7p0, float(n_out12p0));
+
+
+// FloatFunc:11
+	float n_out11p0 = cos(n_out10p0);
+
+
+// FloatOp:14
+	float n_out14p0 = n_out8p0 + n_out11p0;
+
+
+// MultiplyAdd:13
+	float n_in13p2 = 0.00000;
+	float n_out13p0 = fma((n_out3p0 ? 1.0 : 0.0), n_out14p0, n_in13p2);
+
+
+// VectorCompose:9
+	float n_in9p1 = 0.00000;
+	float n_in9p2 = 0.00000;
+	vec3 n_out9p0 = vec3(n_out13p0, n_in9p1, n_in9p2);
+
+
+// ColorParameter:2
+	vec4 n_out2p0 = pipeColor;
+
+
+// MultiplyAdd:4
+	vec3 n_out4p0 = fma(vec3(n_out5p0.xyz), n_out9p0, vec3(n_out2p0.xyz));
+
+
+// FloatParameter:16
+	float n_out16p0 = metallic;
+
+
+// FloatParameter:15
+	float n_out15p0 = roughness;
+
+
+// Output:0
+	ALBEDO = n_out4p0;
+	METALLIC = n_out16p0;
+	ROUGHNESS = n_out15p0;
+
+
+}
+"
+nodes/fragment/0/position = Vector2(640, 140)
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_e0v2j")
+nodes/fragment/2/position = Vector2(100, 60)
+nodes/fragment/3/node = SubResource("VisualShaderNodeBooleanParameter_in7tk")
+nodes/fragment/3/position = Vector2(-720, 200)
+nodes/fragment/4/node = SubResource("VisualShaderNodeMultiplyAdd_eukwe")
+nodes/fragment/4/position = Vector2(420, 180)
+nodes/fragment/5/node = SubResource("VisualShaderNodeColorParameter_tk0mx")
+nodes/fragment/5/position = Vector2(100, 260)
+nodes/fragment/7/node = SubResource("VisualShaderNodeInput_60tgt")
+nodes/fragment/7/position = Vector2(-980, 400)
+nodes/fragment/8/node = SubResource("VisualShaderNodeFloatFunc_rgww5")
+nodes/fragment/8/position = Vector2(-600, 440)
+nodes/fragment/9/node = SubResource("VisualShaderNodeVectorCompose_ktkll")
+nodes/fragment/9/position = Vector2(100, 440)
+nodes/fragment/10/node = SubResource("VisualShaderNodeFloatOp_7pu0p")
+nodes/fragment/10/position = Vector2(-620, 540)
+nodes/fragment/11/node = SubResource("VisualShaderNodeFloatFunc_nxdre")
+nodes/fragment/11/position = Vector2(-460, 520)
+nodes/fragment/12/node = SubResource("VisualShaderNodeIntParameter_owkhf")
+nodes/fragment/12/position = Vector2(-960, 500)
+nodes/fragment/13/node = SubResource("VisualShaderNodeMultiplyAdd_7fi12")
+nodes/fragment/13/position = Vector2(-100, 320)
+nodes/fragment/14/node = SubResource("VisualShaderNodeFloatOp_7nl4g")
+nodes/fragment/14/position = Vector2(-260, 380)
+nodes/fragment/15/node = SubResource("VisualShaderNodeFloatParameter_kelma")
+nodes/fragment/15/position = Vector2(260, 360)
+nodes/fragment/16/node = SubResource("VisualShaderNodeFloatParameter_3f4xm")
+nodes/fragment/16/position = Vector2(200, 300)
+nodes/fragment/connections = PackedInt32Array(2, 0, 4, 2, 4, 0, 0, 0, 5, 0, 4, 0, 7, 0, 8, 0, 7, 0, 10, 0, 10, 0, 11, 0, 12, 0, 10, 1, 3, 0, 13, 0, 8, 0, 14, 0, 11, 0, 14, 1, 14, 0, 13, 1, 13, 0, 9, 0, 9, 0, 4, 1, 15, 0, 0, 3, 16, 0, 0, 2)

@@ -1,0 +1,83 @@
+[gd_scene load_steps=2 format=3 uid="uid://wspby6wbut8i"]
+
+[ext_resource type="Texture2D" uid="uid://b4wa8aje0lydm" path="res://Images/crosshair.png" id="1"]
+
+[node name="crosshair" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("1")
+expand_mode = 1
+
+[node name="pythonBackend" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="pythonBackend"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="pythonBackend/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="pythonBackend/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "PlayerPosition ->"
+
+[node name="Label2" type="Label" parent="pythonBackend/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "X: "
+
+[node name="position_x" type="TextEdit" parent="pythonBackend/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "0.00"
+placeholder_text = "0.00"
+editable = false
+scroll_fit_content_height = true
+
+[node name="Label3" type="Label" parent="pythonBackend/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "Y: "
+
+[node name="position_y" type="TextEdit" parent="pythonBackend/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "0.00"
+placeholder_text = "0.00"
+editable = false
+scroll_fit_content_height = true
+
+[node name="Label4" type="Label" parent="pythonBackend/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "OutputString: "
+
+[node name="outputString" type="TextEdit" parent="pythonBackend/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "String"
+editable = false
+scroll_fit_content_height = true

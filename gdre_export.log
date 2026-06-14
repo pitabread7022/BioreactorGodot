@@ -1,0 +1,46 @@
+GDRE Tools v2.5.0-beta.5
+Windows 10.0.26200, NVIDIA GeForce RTX 4060 Laptop GPU, vulkan
+Opening file: D:/PrepOpStars/Github/Godot-SolarTwin/DigitalTwinBioreact_v3.exe
+Guessing bytecode revision from engine version: 4.2.1 (rev 0x77af6ca)
+Loaded 136 imported files
+Detected Engine Version: 4.2.1
+Detected Bytecode Revision: 4.3.0-stable (77af6ca)
+Verified 415 files, no errors detected!
+setting "Download plugins" set to true
+Guessing bytecode revision from engine version: 4.2.1 (rev 0x77af6ca)
+Extracted 415 files, no errors detected!
+Recreating plugin configs...
+
+Exporting scenes...
+*** Exporting 1 scenes took 1.77s
+
+Saved project config.
+
+
+********************************EXPORT REPORT********************************
+
+Totals:                                 
+Decompiled scripts:                     0
+Failed scripts:                         0
+Imported resources for export session:  136
+Successfully converted:                 136
+Lossy:                                  49
+Rewrote metadata:                       89
+Non-importable conversions:             1
+Not converted:                          0
+Failed conversions:                     0
+-------------
+
+------
+
+The following files were converted and saved to a non-original path, but did not have their import data rewritten.
+These files will not be re-imported when loading the project.
+res://.godot/imported/lab_anim_bgeV2.blend-f1e7f973a656acc22c14330a2b049b2a.scn to res://.assets/blender_files/lab_anim_bgeV2.glb
+
+
+------------------------------------------------------------------------------------
+
+Use Godot editor version 4.2.1 to edit the project.
+
+*******************************************************************************
+
